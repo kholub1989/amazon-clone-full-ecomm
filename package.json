@@ -1,0 +1,26 @@
+{
+  "name": "amazon-clone-full-ecomm",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch server --exec node --experimental-modules server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kholub1989/amazon-clone-full-ecomm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kholub1989/amazon-clone-full-ecomm/issues"
+  },
+  "homepage": "https://github.com/kholub1989/amazon-clone-full-ecomm#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.6"
+  }
+}
