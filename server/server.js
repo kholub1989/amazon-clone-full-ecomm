@@ -4,11 +4,14 @@ import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
 
 const app = express();
-mongoose.connect("mongodb://localhost/amazon-clone-full-ecomm", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+mongoose.connect(
+  process.env.MONGODB_URL || "mongodb://localhost/amazon-clone-full-ecomm",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 
 app.get("/api/products/:id", (req, res) => {
   const product = data.products.find((x) => x._id === req.params.id);
@@ -33,8 +36,7 @@ app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });
 
-// const port = process.env.PORT || 5000;
-const port = 5000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is fire 🚀 on http://localhost:${port}`);
 });
