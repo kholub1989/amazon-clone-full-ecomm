@@ -1,6 +1,6 @@
 import {
   USER_SIGNIN_REQUEST,
-  USER_SIGNIN_FALL,
+  USER_SIGNIN_FAIL,
   USER_SIGNIN_SUCCESS,
   USER_SIGNOUT,
 } from "../constants/userConstants";
@@ -11,7 +11,7 @@ export const userSigninReducer = (state = {}, action) => {
       return { loading: true };
     case USER_SIGNIN_SUCCESS:
       return { loading: false, userInfo: action.payload };
-    case USER_SIGNIN_FALL:
+    case USER_SIGNIN_FAIL:
       return {
         loading: false,
         error: action.payload,
