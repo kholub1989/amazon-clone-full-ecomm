@@ -9,6 +9,7 @@ export default function RegisterScreen(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const redirect = props.location.search
     ? props.location.search.split("=")[1]
@@ -20,20 +21,24 @@ export default function RegisterScreen(props) {
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(register(name, email, password));
+    if (password !== confirmPassword) {
+      alert("Password and confirm password are not match");
+    } else {
+      dispatch(register(name, email, password));
+    }
   };
 
   useEffect(() => {
     if (userInfo) {
       props.history.push(redirect);
     }
-  }, [userInfo]);
+  }, [props.history, redirect, userInfo]);
 
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>register</h1>
+          <h1>Create Account</h1>
         </div>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
@@ -68,6 +73,16 @@ export default function RegisterScreen(props) {
           ></input>
         </div>
         <div>
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Enter confirm password"
+            required
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></input>
+        </div>
+        <div>
           <label />
           <button className="primary" type="submit">
             Register
@@ -76,7 +91,8 @@ export default function RegisterScreen(props) {
         <div>
           <label />
           <div>
-            Already have an account? <Link to="/singin">Sing-In</Link>
+            Already have an account?{" "}
+            <Link to={`/singin?redirect=${redirect}`}>Sing-In</Link>
           </div>
         </div>
       </form>
