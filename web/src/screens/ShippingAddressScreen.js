@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function ShippingAddressScreen() {
@@ -7,8 +8,13 @@ export default function ShippingAddressScreen() {
   const [city, setCity] = useState("");
   const [postalCode, setPostalCode] = useState("");
   const [country, setCountry] = useState("");
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      saveShippingAddress({ fullName, address, city, postalCode, country })
+    );
     // TODO: dispatch save shipping address action
   };
   return (
