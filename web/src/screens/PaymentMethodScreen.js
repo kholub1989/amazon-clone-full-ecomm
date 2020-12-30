@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { CheckoutSteps } from "../components/CheckoutSteps";
 
-export default function PaymentMethodScreen() {
+export default function PaymentMethodScreen(props) {
   const [paymentMethod, setpaymentMethod] = useState("PayPal");
   const dispatch = useDispatch();
   const submitHandler = (e) => {
