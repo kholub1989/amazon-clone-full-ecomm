@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { savePaymentMethod } from "../actions/cartActions";
-import { CheckoutSteps } from "../components/CheckoutSteps";
+import CheckoutSteps from "../components/CheckoutSteps";
 
 export default function PaymentMethodScreen(props) {
-  const [paymentMethod, setpaymentMethod] = useState("PayPal");
+  
+  const [paymentMethod, setPaymentMethod] = useState("PayPal");
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
@@ -15,7 +16,7 @@ export default function PaymentMethodScreen(props) {
     <div>
       <CheckoutSteps step1 step2 step3></CheckoutSteps>
       <form className="form" onSubmit={submitHandler}>
-        <div>Payment</div>
+        <div>Payment Method</div>
         <div>
           <div>
             <input
@@ -38,7 +39,6 @@ export default function PaymentMethodScreen(props) {
               value="Stripe"
               name="paymentMethod"
               required
-              checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></input>
             <label htmlFor="stripe">Stripe</label>
