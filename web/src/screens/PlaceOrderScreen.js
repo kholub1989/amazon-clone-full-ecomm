@@ -24,6 +24,14 @@ export default function PlaceOrderScreen(props) {
                 </p>
               </div>
             </li>
+            <li>
+              <div className="cart cart-body">
+                <h2>Payment</h2>
+                <p>
+                  <strong>Method:</strong> {cart.paymentMethod} <br />
+                </p>
+              </div>
+            </li>
           </ul>
         </div>
         <div className="col-1"></div>
