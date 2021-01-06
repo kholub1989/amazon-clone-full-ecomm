@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import Order from "../models/orderModel";
-import { isAuth } from "../utils";
+import Order from "../models/orderModel.js";
+import { isAuth } from "../utils.js";
 
 const orderRouter = express.Router();
 
@@ -29,3 +29,5 @@ orderRouter.post(
     }
   })
 );
+
+export default orderRouter;
