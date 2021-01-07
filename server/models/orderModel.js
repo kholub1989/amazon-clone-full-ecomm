@@ -24,7 +24,7 @@ const orderSchema = new mongoose.Schema(
     },
     paymentMethod: { type: String, required: true },
     itemsPrice: { type: String, required: true },
-    shoppingPrice: { type: String, required: true },
+    shoppingPrice: { type: String, required: false },
     taxPrice: { type: String, required: true },
     totalPrice: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
