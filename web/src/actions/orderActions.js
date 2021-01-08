@@ -1,12 +1,13 @@
 import Axios from "axios";
-import {
-  ORDER_CREATE_REQUEST,
-  ORDER_CREATE_FAIL,
-  ORDER_CREATE_SUCCESS,
-  ORDER_DETAILS_REQUEST,
-  ORDER_DETAILS_FAIL,
-} from "../constants/orderConstants";
 import { CART_EMPTY } from "../constants/cartConstants";
+import {
+  ORDER_CREATE_FAIL,
+  ORDER_CREATE_REQUEST,
+  ORDER_CREATE_SUCCESS,
+  ORDER_DETAILS_FAIL,
+  ORDER_DETAILS_REQUEST,
+  ORDER_DETAILS_SUCCESS,
+} from "../constants/orderConstants";
 
 export const createOrder = (order) => async (dispatch, getState) => {
   dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
@@ -33,14 +34,16 @@ export const createOrder = (order) => async (dispatch, getState) => {
   }
 };
 
-export const detailsOrder = (orderId) => (dispatch, getState) => {
+export const detailsOrder = (orderId) => async (dispatch, getState) => {
   dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId });
-  const {userSignin: {userInfo}} = getState()
+  const {
+    userSignin: { userInfo },
+  } = getState();
   try {
-    const {data} = await Axios.get(`/api/orders/${orderId}`, {
+    const { data } = await Axios.get(`/api/orders/${orderId}`, {
       headers: { Authorization: `Bearer ${userInfo.token}` },
     });
-    dispatch({type: ORDER_DETAILS_SUCCESS, payload: data})
+    dispatch({ type: ORDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     const message =
       error.response && error.response.data.message
