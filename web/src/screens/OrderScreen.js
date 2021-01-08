@@ -10,7 +10,6 @@ export default function OrderScreen(props) {
   const orderDetails = useSelector((state) => state.orderDetails);
   const { order, loading, error } = orderDetails;
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(detailsOrder(orderId));
   }, [dispatch, orderId]);
@@ -30,9 +29,9 @@ export default function OrderScreen(props) {
                 <h2>Shipping</h2>
                 <p>
                   <strong>Name:</strong> {order.shippingAddress.fullName} <br />
-                  <strong>Address:</strong> {order.shippingAddress.address},{" "}
+                  <strong>Address: </strong> {order.shippingAddress.address},
                   {order.shippingAddress.city},{" "}
-                  {order.shippingAddress.postalCode},{" "}
+                  {order.shippingAddress.postalCode},
                   {order.shippingAddress.country}
                 </p>
                 {order.isDelivered ? (
@@ -48,7 +47,7 @@ export default function OrderScreen(props) {
               <div className="card card-body">
                 <h2>Payment</h2>
                 <p>
-                  <strong>Method:</strong> {order.paymentMethod} <br />
+                  <strong>Method:</strong> {order.paymentMethod}
                 </p>
                 {order.isPaid ? (
                   <MessageBox variant="success">
@@ -94,33 +93,33 @@ export default function OrderScreen(props) {
           <div className="card card-body">
             <ul>
               <li>
-                <h2>Order Summery</h2>
+                <h2>Order Summary</h2>
               </li>
               <li>
                 <div className="row">
                   <div>Items</div>
-                  <div>${order.itemsPrice.toFixed(2)}</div>
+                  <div>${Number(order.itemsPrice).toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>Shipping</div>
-                  <div>${order.shippingPrice.toFixed(2)}</div>
+                  <div>${Number(order.shippingPrice).toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>Tax</div>
-                  <div>${order.taxPrice.toFixed(2)}</div>
+                  <div>${Number(order.taxPrice).toFixed(2)}</div>
                 </div>
               </li>
               <li>
                 <div className="row">
                   <div>
-                    <strong>Total</strong>
+                    <strong> Order Total</strong>
                   </div>
                   <div>
-                    <strong>${order.totalPrice.toFixed(2)}</strong>
+                    <strong>${Number(order.totalPrice).toFixed(2)}</strong>
                   </div>
                 </div>
               </li>
