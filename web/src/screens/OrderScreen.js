@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import Axios from "axios";
+import PayPalButton from "react-paypal-button-v2";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { detailsOrder } from "../actions/orderActions";
@@ -35,6 +37,10 @@ export default function OrderScreen(props) {
       }
     }
   }, [dispatch, order, orderId, sdkReady]);
+
+  const successPaymentHandler = () => {
+    // TODO: dispatch pay order
+  };
 
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -145,6 +151,18 @@ export default function OrderScreen(props) {
                   </div>
                 </div>
               </li>
+              {!order.isPaid && (
+                <li>
+                  {!sdkReady ? (
+                    <LoadingBox></LoadingBox>
+                  ) : (
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={successPaymentHandler}
+                    ></PayPalButton>
+                  )}
+                </li>
+              )}
             </ul>
           </div>
         </div>
